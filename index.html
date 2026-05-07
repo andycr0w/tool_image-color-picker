@@ -173,7 +173,7 @@
     }
   </style>
 </head>
-<body>
+<body style="margin:0; min-height:100vh; display:flex; justify-content:center; align-items:center;">
   <div class="app">
     <h1>图片取色器</h1>
     <p class="desc">上传图片后，将鼠标移动到图片上即可实时获取颜色；点击图片可以锁定当前颜色。</p>
@@ -186,7 +186,7 @@
 
     <div class="main">
       <div class="canvas-wrap" id="canvasWrap">
-        <div class="empty" id="emptyText">请先上传一张图片</div>
+        <div class="empty" id="emptyText">    请先上传一张图片</div>
         <canvas id="canvas"></canvas>
       </div>
 
@@ -222,7 +222,7 @@
           <div class="value" id="posValue">x: 0, y: 0</div>
         </div>
 
-        <div class="locked" id="lockedText">已锁定当前颜色(双击取消锁定)</div>
+        <div class="locked" id="lockedText">  已锁定当前颜色   (双击取消锁定)  </div>
 
         <div class="tip">
           说明：8 进制颜色格式使用 RGB 三个通道分别转换，例如
