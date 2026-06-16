@@ -13,12 +13,38 @@
       margin: 0;
       min-height: 100vh;
       font-family: Arial, "Microsoft YaHei", sans-serif;
-      background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
+      background: linear-gradient(135deg, #f8f6ff, #eeeaff);
       color: #111827;
       display: flex;
       justify-content: center;
       align-items: flex-start;
       padding: 40px 20px;
+    }
+
+    .home-teleport {
+      position: fixed;
+      top: 16px;
+      left: 16px;
+      z-index: 50;
+      display: inline-flex;
+      min-height: 38px;
+      align-items: center;
+      padding: 0 14px;
+      border: 1px solid #c7bdf0;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.92);
+      color: #3730a3;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 12px 30px rgba(73, 56, 150, 0.14);
+      backdrop-filter: blur(8px);
+    }
+
+    .home-teleport:hover,
+    .home-teleport:focus-visible {
+      background: #eef2ff;
+      outline: none;
     }
 
     .app {
@@ -76,7 +102,7 @@
 
     canvas {
       max-width: 100%;
-      display: block;
+      display: none;
       cursor: crosshair;
     }
 
@@ -174,6 +200,7 @@
   </style>
 </head>
 <body style="margin:0; min-height:100vh; display:flex; justify-content:center; align-items:center;">
+  <a class="home-teleport" href="https://andycr0w.github.io/">← AndyCrow Home</a>
   <div class="app">
     <h1>图片取色器</h1>
     <p class="desc">上传图片后，将鼠标移动到图片上即可实时获取颜色；点击图片可以锁定当前颜色。</p>
