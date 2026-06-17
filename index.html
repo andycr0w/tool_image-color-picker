@@ -84,7 +84,7 @@
       display: grid;
       grid-template-columns: 1fr 320px;
       gap: 24px;
-      align-items: start;
+      align-items: stretch;
     }
 
     .canvas-wrap {
@@ -93,7 +93,8 @@
       border-radius: 16px;
       background: #f3f4f6;
       border: 1px solid #e5e7eb;
-      overflow: auto;
+      overflow: hidden;
+      padding: 16px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -101,9 +102,10 @@
     }
 
     canvas {
-      max-width: 100%;
       display: none;
       cursor: crosshair;
+      max-width: 100%;
+      max-height: 100%;
     }
 
     .empty {
@@ -118,6 +120,7 @@
       border-radius: 16px;
       padding: 18px;
       background: #fafafa;
+      height: 100%;
     }
 
     .color-preview {
@@ -263,6 +266,7 @@
   <script>
     const imageInput = document.getElementById("imageInput");
     const canvas = document.getElementById("canvas");
+    const canvasWrap = document.getElementById("canvasWrap");
     const ctx = canvas.getContext("2d", { willReadFrequently: true });
 
     const emptyText = document.getElementById("emptyText");
@@ -275,6 +279,28 @@
 
     let imageLoaded = false;
     let isLocked = false;
+
+    function fitCanvasToWrap() {
+      if (!imageLoaded || !canvas.width || !canvas.height) return;
+
+      const style = window.getComputedStyle(canvasWrap);
+      const horizontalPadding = parseFloat(style.paddingLeft) + parseFloat(style.paddingRight);
+      const verticalPadding = parseFloat(style.paddingTop) + parseFloat(style.paddingBottom);
+      const availableWidth = canvasWrap.clientWidth - horizontalPadding;
+      const availableHeight = canvasWrap.clientHeight - verticalPadding;
+
+      if (availableWidth <= 0 || availableHeight <= 0) return;
+
+      const scale = Math.min(availableWidth / canvas.width, availableHeight / canvas.height);
+      canvas.style.width = `${Math.max(1, Math.floor(canvas.width * scale))}px`;
+      canvas.style.height = `${Math.max(1, Math.floor(canvas.height * scale))}px`;
+    }
+
+    if ("ResizeObserver" in window) {
+      new ResizeObserver(fitCanvasToWrap).observe(canvasWrap);
+    } else {
+      window.addEventListener("resize", fitCanvasToWrap);
+    }
 
     imageInput.addEventListener("change", function () {
       const file = this.files[0];
@@ -300,6 +326,7 @@
           imageLoaded = true;
           isLocked = false;
           lockedText.style.display = "none";
+          requestAnimationFrame(fitCanvasToWrap);
         };
 
         img.src = event.target.result;
