@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <title>图片取色器</title>
+  <rect width="64" height="64" rx="14" fill="#eef2ff"/>
+  <path d="m39.5 10 14.5 14.5-7 7-3.2-3.2L25.5 46.6l-9.8 2.8-1.4-1.4 2.8-9.8 18.3-18.3-3-3 7.1-6.9Z" fill="#3730a3"/>
+  <path d="m36.1 23.2 4.7 4.7-18.7 18.7-4.7-4.7 18.7-18.7Z" fill="#fff"/>
+  <circle cx="49" cy="45" r="7" fill="#ff3f63"/>
+  <circle cx="39" cy="52" r="5" fill="#ffd76a"/>
+  <circle cx="53" cy="55" r="4" fill="#4fa6ec"/>
+</svg>
